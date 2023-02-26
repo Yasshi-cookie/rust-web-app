@@ -1,11 +1,17 @@
 // 第二章
 fn main() {
+    // 2.2 関数の実行
     // execute0()
     // execute1()
     // execute2()
     // execute3()
     // execute4()
     // execute5()
+
+    // 2.3 制御構造
+    // execute6()
+    // execute7()
+    execute8()
 }
 
 fn execute0() {
@@ -48,6 +54,86 @@ fn execute5() {
     println!("{:?}", input);
 }
 
+fn execute6() {
+    // // パターンマッチ
+    // println!("{}", fizz_buzz(3));
+    // println!("{}", fizz_buzz(5));
+    // println!("{}", fizz_buzz(15));
+
+    let data = Some("Some text");
+    let print_data = match data {
+        Some(text) => text, // textで値を取得できる
+        None => "None text",
+    };
+
+    println!("{}", print_data);
+}
+
+fn execute7() {
+    if let Some(color) = string_to_color_token("red") {
+        println!("red");
+    }
+}
+
+fn execute8() {
+    // ループ
+    let result = add_until(1, 10);
+    println!("{}", result);
+}
+
+fn add_until(start: i32, end: i32) -> i32 {
+    let mut sum = 0;
+    let mut temp = start;
+    // // loop
+    // // breakしたときの値を返す
+    // sum = loop {
+    //     sum += temp;
+    //     if temp == end {
+    //         break sum;
+    //     }
+    //     temp += 1;
+    // };
+    // sum
+
+    // // while
+    // // 常に空のタプル()を返す
+    // while temp <= end {
+    //     sum += temp;
+    //     temp += 1;
+    // }
+
+    // sum
+
+    // // for
+    // // forは値を返さないので注意、イテレーターを実装しているものに対して実行可能
+    for temp in start..(end + 1) {
+        sum += temp;
+    }
+    sum
+
+}
+
+fn string_to_color_token(value: &str) -> Option<Color> {
+    match value {
+        "red" => Some(Color::Red),
+        "blue" => Some(Color::Blue),
+        "green" => Some(Color::Green),
+        "white" => Some(Color::White),
+        _ => None,
+    }
+}
+
+fn fizz_buzz(value: i32) -> String {
+    let result = match value {
+        v if v % 15 == 0 => "fizz buzz".to_string(),
+        v if v % 5 == 0 => "buzz".to_string(),
+        v if v % 3 == 0 => "fizz".to_string(),
+        _ => value.to_string(),
+    };
+
+    return result;
+}
+
 /// xとyを足し合わせます
 ///
 /// # Example
@@ -82,10 +168,6 @@ enum Color {
     Red,
     Blue,
     Green,
-    Hex(String)
-}
-
-enum Option<T> {
-    Some(T),
-    None,
+    White,
+    Hex(String),
 }
