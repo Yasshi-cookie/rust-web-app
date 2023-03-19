@@ -3,6 +3,10 @@ name = "my-todo"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = ["database-test"]
+database-test = []
+
 [dependencies]
 axum = "0.4.8"
 hyper = { version = "0.14.16", features = ["full"] }
@@ -17,3 +21,6 @@ anyhow = "1.0.56"
 thiserror = "1.0.30"
 http-body = "0.4.3"
 validator = { version = "0.14.0", features = ["derive"] }
+async-std = { version = "1.8.0", features = [ "attributes" ] }
+sqlx = { version = "0.5.11", features = [ "mysql", "runtime-async-std-native-tls", "any" ] }
+dotenv = "0.15.0"
